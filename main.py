@@ -5,6 +5,10 @@ import uvicorn
 app = FastAPI()
 voice_mailbox = {}
 
+@app.get("/")
+async def home():
+    return {"status": "success", "message": "The Voice API is alive!"}
+
 @app.post("/send-voice/{room_id}")
 async def send_voice(room_id: str, request: Request):
     audio_data = await request.body()
